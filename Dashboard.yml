@@ -1,0 +1,193 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: grafana-dashboard
+  namespace: monitoring
+data:
+  dashboard.json : |-
+    {
+        "annotations": {
+            "list": [
+            {
+                "builtIn": 1,
+                "datasource": {
+                "type": "grafana",
+                "uid": "-- Grafana --"
+                },
+                "enable": true,
+                "hide": true,
+                "iconColor": "rgba(0, 211, 255, 1)",
+                "name": "Annotations & Alerts",
+                "target": {
+                "limit": 100,
+                "matchAny": false,
+                "tags": [],
+                "type": "dashboard"
+                },
+                "type": "dashboard"
+            }
+            ]
+        },
+        "editable": true,
+        "fiscalYearStartMonth": 0,
+        "graphTooltip": 0,
+        "id": 1,
+        "links": [],
+        "liveNow": false,
+        "panels": [
+            {
+            "datasource": {
+                "type": "prometheus",
+                "uid": "P1809F7CD0C75ACF3"
+            },
+            "fieldConfig": {
+                "defaults": {
+                "color": {
+                    "mode": "thresholds"
+                },
+                "mappings": [],
+                "thresholds": {
+                    "mode": "absolute",
+                    "steps": [
+                    {
+                        "color": "green",
+                        "value": null
+                    },
+                    {
+                        "color": "red",
+                        "value": 80
+                    }
+                    ]
+                }
+                },
+                "overrides": []
+            },
+            "gridPos": {
+                "h": 8,
+                "w": 12,
+                "x": 0,
+                "y": 0
+            },
+            "id": 4,
+            "options": {
+                "colorMode": "value",
+                "graphMode": "area",
+                "justifyMode": "auto",
+                "orientation": "auto",
+                "reduceOptions": {
+                "calcs": [
+                    "lastNotNull"
+                ],
+                "fields": "",
+                "values": false
+                },
+                "textMode": "auto"
+            },
+            "pluginVersion": "9.0.2",
+            "targets": [
+                {
+                "datasource": {
+                    "type": "prometheus",
+                    "uid": "P1809F7CD0C75ACF3"
+                },
+                "editorMode": "builder",
+                "expr": "orders",
+                "legendFormat": "Anzahl der offenen Bestellungen",
+                "range": true,
+                "refId": "A"
+                }
+            ],
+            "title": "Anzahl aktiver Bestellungen",
+            "type": "stat"
+            },
+            {
+            "cards": {},
+            "color": {
+                "cardColor": "#b4ff00",
+                "colorScale": "sqrt",
+                "colorScheme": "interpolateOranges",
+                "exponent": 0.5,
+                "mode": "spectrum"
+            },
+            "dataFormat": "timeseries",
+            "datasource": {
+                "type": "prometheus"
+            },
+            "gridPos": {
+                "h": 9,
+                "w": 12,
+                "x": 0,
+                "y": 8
+            },
+            "heatmap": {},
+            "hideZeroBuckets": false,
+            "highlightCards": true,
+            "id": 2,
+            "legend": {
+                "show": false
+            },
+            "reverseYBuckets": false,
+            "targets": [
+                {
+                "datasource": {
+                    "type": "prometheus"
+                },
+                "editorMode": "builder",
+                "expr": "duration_Sap_bucket",
+                "legendFormat": "Duration-SAP-Calls (ms)",
+                "range": true,
+                "refId": "A"
+                },
+                {
+                "datasource": {
+                    "type": "prometheus"
+                },
+                "editorMode": "builder",
+                "expr": "ks_duration_ExtractAndStoreOrderDataConsumer_bucket",
+                "hide": false,
+                "legendFormat": "Extract to Sql duration (ms)",
+                "range": true,
+                "refId": "B"
+                },
+                {
+                "datasource": {
+                    "type": "prometheus"
+                },
+                "hide": false,
+                "refId": "C"
+                }
+            ],
+            "title": "Laufzeiten nach Prozess",
+            "tooltip": {
+                "show": true,
+                "showHistogram": false
+            },
+            "type": "heatmap",
+            "xAxis": {
+                "show": true
+            },
+            "yAxis": {
+                "format": "short",
+                "logBase": 1,
+                "show": true
+            },
+            "yBucketBound": "auto"
+            }
+        ],
+        "schemaVersion": 36,
+        "style": "dark",
+        "tags": [],
+        "templating": {
+            "list": []
+        },
+        "time": {
+            "from": "now-15m",
+            "to": "now"
+        },
+        "timepicker": {},
+        "timezone": "",
+        "title": "Überblick",
+        "uid": "GiPYY6qnz",
+        "version": 1,
+        "weekStart": ""
+        }
